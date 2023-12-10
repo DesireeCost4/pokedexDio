@@ -1,7 +1,7 @@
 const pokemonList = document.getElementById('pokemonList')
 const loadMoreButton = document.getElementById('loadMoreButton')
 
-const maxRecords = 151
+const maxRecords = 200
 const limit = 10
 let offset = 0;
 
@@ -45,3 +45,39 @@ loadMoreButton.addEventListener('click', () => {
         loadPokemonItens(offset, limit)
     }
 })
+ // Nova Função - Desafio DIO// 
+function filterPokemon(term) {
+    const pokemonElements = pokemonList.querySelectorAll('.pokemon');
+
+    pokemonElements.forEach((pokemonElement) => {
+        const nameElement = pokemonElement.querySelector('.name');
+        const pokemonName = nameElement.textContent.toLowerCase();
+
+        if (pokemonName.includes(term)) {
+            pokemonElement.style.display = 'block'; 
+        } else {
+            pokemonElement.style.display = 'none';   
+        }
+    });
+}
+
+
+searchButton.addEventListener('click', function () {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    filterPokemon(searchTerm);
+});
+
+searchInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        filterPokemon(searchTerm);
+    }
+});
+
+
+
+
+
+
+
+
